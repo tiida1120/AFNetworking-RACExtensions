@@ -69,6 +69,8 @@ extern NSString *const RAFNetworkingOperationErrorKey;
 /// resulting JSON object and response headers or error.
 - (RACSignal *)rac_PATCH:(NSString *)path parameters:(id)parameters;
 
+- (RACSignal *)rac_requestPath:(NSString *)path parameters:(id)parameters method:(NSString *)method;
+
 @end
 
 @interface AFHTTPRequestOperationManager (RACSupportDeprecated)

@@ -43,6 +43,8 @@ extern NSString *const RACAFNResponseObjectErrorKey;
 /// resulting JSON object and response headers or error.
 - (RACSignal *)rac_DELETE:(NSString *)path parameters:(id)parameters;
 
+- (RACSignal *)rac_requestPath:(NSString *)path parameters:(id)parameters method:(NSString *)method;
+
 @end
 
 #endif
