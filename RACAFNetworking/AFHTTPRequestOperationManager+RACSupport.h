@@ -71,6 +71,8 @@ extern NSString *const RAFNetworkingOperationErrorKey;
 
 - (RACSignal *)rac_requestPath:(NSString *)path parameters:(id)parameters method:(NSString *)method;
 
+- (RACSignal *)rac_POST:(NSString *)URLString parameters:(id)parameters constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block;
+
 @end
 
 @interface AFHTTPRequestOperationManager (RACSupportDeprecated)

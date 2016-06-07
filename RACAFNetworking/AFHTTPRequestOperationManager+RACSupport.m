@@ -61,6 +61,21 @@
 	}];
 }
 
+- (RACSignal *)rac_POST:(NSString *)URLString parameters:(id)parameters constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block {
+    return [RACSignal createSignal:^(id<RACSubscriber> subscriber) {
+        NSError *serializationError = nil;
+        NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block error:&serializationError];
+        
+        AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:nil failure:nil];
+        RACSignal *signal = [operation rac_overrideHTTPCompletionBlock];
+        [self.operationQueue addOperation:operation];
+        [signal subscribe:subscriber];
+        return [RACDisposable disposableWithBlock:^{
+            [operation cancel];
+        }];
+    }];
+}
+
 #ifdef _SYSTEMCONFIGURATION_H
 - (RACSignal *)networkReachabilityStatusSignal {
 	return RACObserve(self.reachabilityManager, networkReachabilityStatus);
