@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'NSURLSession' do |ss|
-    ss.dependency 'AFNetworking/NSURLSession', '~> 2.0'
+    ss.dependency 'AFNetworking/NSURLSession', '~> 3.0'
     ss.dependency 'ReactiveCocoa/Core', '~> 2.0'
     ss.source_files = 'RACAFNetworking/AFHTTPSessionManager+RACSupport.{h,m}'
   end
